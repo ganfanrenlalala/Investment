@@ -40,12 +40,12 @@ C:\Users\姚超杰\.cursor\skills\.venv\Scripts\python.exe C:\Users\姚超杰\.c
 本地命令示例：
 
 ```text
-C:\Users\姚超杰\.cursor\skills\.venv\Scripts\python.exe C:\Users\姚超杰\.cursor\skills\stocksight\scripts\mainline_radar.py --board all --limit 30 --out reports/mainline-radar-today.md --print
+C:\Users\姚超杰\.cursor\skills\.venv\Scripts\python.exe C:\Users\姚超杰\.cursor\skills\stocksight\scripts\mainline_radar.py --board all --limit 30 --out reports/YYYY-MM-DD/主线雷达.md --print
 ```
 
 ## 4. 调用 firecrawl-cli
 
-检索当日资讯与外盘点评，写入 `.firecrawl/`，不要整文件读入上下文，只抽取标题、关键数据和结论：
+检索当日资讯与外盘点评，原始检索结果写入当天文件夹的 `sources/`，不要整文件读入上下文，只抽取标题、关键数据和结论：
 
 1. 黄金现货/期货当日行情与驱动因素
 2. 全球半导体与芯片股当日表现
@@ -55,14 +55,23 @@ C:\Users\姚超杰\.cursor\skills\.venv\Scripts\python.exe C:\Users\姚超杰\.c
 命令示例：
 
 ```text
-firecrawl search "黄金 现货 期货 今日行情" --scrape --limit 5 -o .firecrawl/gold.json --json
-firecrawl search "Nasdaq semiconductor stocks today" --scrape --limit 5 -o .firecrawl/nasdaq-semi.json --json
-firecrawl search "医药 生物 板块 今日行情" --scrape --limit 5 -o .firecrawl/pharma.json --json
+firecrawl search "黄金 现货 期货 今日行情" --scrape --limit 5 -o reports/YYYY-MM-DD/sources/gold.json --json
+firecrawl search "Nasdaq semiconductor stocks today" --scrape --limit 5 -o reports/YYYY-MM-DD/sources/nasdaq-semi.json --json
+firecrawl search "医药 生物 板块 今日行情" --scrape --limit 5 -o reports/YYYY-MM-DD/sources/pharma.json --json
 ```
 
 ## 5. 输出报告
 
-把结果写成 `reports/YYYY-MM-DD.md`，结构如下：
+所有当日文件都放进 Investment 项目下的日期文件夹，不要把多天内容写在同一个文件里：
+
+```text
+reports/YYYY-MM-DD/
+  复盘.md
+  主线雷达.md
+  sources/
+```
+
+主报告写成 `reports/YYYY-MM-DD/复盘.md`，结构如下：
 
 1. **今日结论**：3 到 5 条要点
 2. **A 股异动**：涨跌停、资金流、主线雷达、值得跟踪的标的
@@ -72,3 +81,5 @@ firecrawl search "医药 生物 板块 今日行情" --scrape --limit 5 -o .fire
 6. **数据时点与来源**：akshare-stock、stocksight、firecrawl-cli
 
 纳指、美股半导体在 15:30 通常尚未开盘，使用最近可用收盘或盘前数据，并写明时点。
+
+写完后把当天的 `reports/YYYY-MM-DD/` 文件夹提交并推送到仓库，这样本地 Investment 目录在拉取后能看到完整当日材料。
