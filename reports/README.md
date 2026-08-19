@@ -4,7 +4,10 @@
 
 ```text
 reports/2026-08-19/
-  复盘.md
+  复盘.md          # 含 Mermaid 图表
   主线雷达.md
+  stocksight/
   sources/
 ```
+
+`复盘.md` 在文字结论之外，应包含指数涨跌、涨跌停对比、观察对象涨跌等 Mermaid 图。

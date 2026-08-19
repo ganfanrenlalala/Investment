@@ -11,5 +11,6 @@
   - `python3 .cursor/skills/stocksight/scripts/report.py ...`
 - Firecrawl：`firecrawl search ...`。密钥来自 Secrets 中的 `FIRECRAWL_API_KEY`，不要走浏览器登录。
 - 报告写入 `reports/YYYY-MM-DD/`，主文件为 `复盘.md`。
+- 终稿必须含 Mermaid 可视化：指数涨跌、涨跌停对比、四观察对象/关键标的涨跌；缺数据就省略该图并注明，不要编造。
 - 不要编造行情。某个 skill 失败时写明原因，用其余来源继续。
 - 内容仅供研究，不构成投资建议。
