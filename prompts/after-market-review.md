@@ -23,10 +23,10 @@
 8. `纳指行情` 或 `美股纳斯达克`
 9. `黄金期货`（若接口失败，在报告中标注，改由 firecrawl 补黄金行情）
 
-本地命令示例：
+从仓库根目录调用：
 
 ```text
-C:\Users\姚超杰\.cursor\skills\.venv\Scripts\python.exe C:\Users\姚超杰\.cursor\skills\akshare-stock\main.py --query "A股大盘"
+python3 .cursor/skills/akshare-stock/main.py --query "A股大盘"
 ```
 
 ## 3. 调用 stocksight
@@ -37,10 +37,10 @@ C:\Users\姚超杰\.cursor\skills\.venv\Scripts\python.exe C:\Users\姚超杰\.c
 2. 对当日最值得关注的 3 到 5 只异动股（优先半导体、医药，以及涨跌停/放量异常标的）生成详细报告。
 3. 若雷达或 akshare 给出明确龙头，再补 1 到 2 份个股详细报告。
 
-本地命令示例：
+从仓库根目录调用：
 
 ```text
-C:\Users\姚超杰\.cursor\skills\.venv\Scripts\python.exe C:\Users\姚超杰\.cursor\skills\stocksight\scripts\mainline_radar.py --board all --limit 30 --out reports/YYYY-MM-DD/主线雷达.md --print
+python3 .cursor/skills/stocksight/scripts/mainline_radar.py --board all --limit 30 --out reports/YYYY-MM-DD/主线雷达.md --print
 ```
 
 ## 4. 调用 firecrawl-cli

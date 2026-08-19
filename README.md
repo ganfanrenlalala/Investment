@@ -22,3 +22,17 @@
 5. 汇总投资建议，写入 `reports/YYYY-MM-DD/`（每天一个文件夹，主报告为 `复盘.md`）
 
 纳指和美股半导体在 15:30 通常尚未开盘，报告会使用最近可用数据并标明时点。内容仅供研究，不构成投资建议。
+
+## Skills（已迁入本仓库）
+
+Cloud 定时任务只能使用仓库内 skill，不能使用本机 `~/.cursor/skills`。
+
+| Skill | 路径 |
+| --- | --- |
+| akshare-stock | `.cursor/skills/akshare-stock` |
+| stocksight | `.cursor/skills/stocksight` |
+| firecrawl-cli | `.cursor/skills/firecrawl-cli` |
+
+依赖：`python3 -m pip install -r requirements.txt`，并全局安装 `firecrawl-cli`。Firecrawl 需要环境变量 `FIRECRAWL_API_KEY`（Cloud Agents 控制台 Secrets）。
+
+迁移后请 **commit 并 push**，再在 Automations 里绑定本仓库；否则云端仍然找不到这些 skill。

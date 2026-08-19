@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "generated_by": "StockSight-Skill",
+  "mode": "detailed",
+  "provider": "sample",
+  "failed_codes": [],
+  "quality_notes": [
+    "This is a static sample snapshot for offline rendering."
+  ],
+  "report": {
+    "title": "Sample StockSight Report",
+    "summary": "Sample Tech 今日报 128.40，涨跌幅 +3.25%，触发 3 个技术异动信号。",
+    "stocks": [
+      {
+        "code": "SAMPLE",
+        "name": "Sample Tech",
+        "current_price": 128.4,
+        "prev_close": 124.36,
+        "open_price": 125.1,
+        "high": 131.2,
+        "low": 123.8,
+        "volume": 28600000,
+        "amount": 3672000000.0,
+        "volume_ratio": 2.48,
+        "change_percent": 3.25,
+        "turnover_rate": 4.8,
+        "timestamp": "2026-05-18 15:00:00",
+        "market": "us",
+        "raw": {
+          "provider": "sample"
+        }
+      }
+    ],
+    "signals": [
+      {
+        "stock_code": "SAMPLE",
+        "risk_type": "量比偏离",
+        "level": 2,
+        "deviation_value": 1.48,
+        "deviation_unit": "x",
+        "description": "量比高于常态区间，短线资金活跃度上升。"
+      },
+      {
+        "stock_code": "SAMPLE",
+        "risk_type": "换手率异常",
+        "level": 2,
+        "deviation_value": 4.8,
+        "deviation_unit": "%",
+        "description": "换手率偏高，需观察资金持续性。"
+      },
+      {
+        "stock_code": "SAMPLE",
+        "risk_type": "价格异动",
+        "level": 1,
+        "deviation_value": 3.25,
+        "deviation_unit": "%",
+        "description": "价格涨幅明显，但尚未达到危险区间。"
+      }
+    ],
+    "data_source": "sample snapshot",
+    "timestamp": "2026-05-18 15:10:00",
+    "news": [
+      {
+        "title": "Sample Tech releases quarterly update",
+        "source": "Example News",
+        "url": "https://example.com/sample-news",
+        "published_at": "2026-05-18",
+        "snippet": "A static news item used only to demonstrate StockSight rendering."
+      }
+    ],
+    "technical": {
+      "macd": {
+        "dif": [0.0, 0.0, 0.12, 0.18, 0.21, 0.16],
+        "dea": [0.0, 0.0, 0.08, 0.13, 0.17, 0.18],
+        "macd": [0.0, 0.0, 0.08, 0.1, 0.08, -0.04],
+        "dates": ["2026-05-13", "2026-05-14", "2026-05-15", "2026-05-16", "2026-05-17", "2026-05-18"]
+      },
+      "rsi": {
+        "values": [0.0, 58.2, 63.4, 68.1, 71.6, 74.2],
+        "dates": ["2026-05-13", "2026-05-14", "2026-05-15", "2026-05-16", "2026-05-17", "2026-05-18"],
+        "period": 14
+      },
+      "signals": [
+        {
+          "indicator": "RSI",
+          "signal_type": "overbought",
+          "level": 2,
+          "direction": "bearish",
+          "date": "2026-05-18",
+          "value": 74.2,
+          "description": "超买：RSI 高于 70，需警惕追高风险。"
+        }
+      ],
+      "notes": []
+    }
+  }
+}

@@ -1,0 +1,8 @@
+﻿# Auto-detect text files and enforce UTF-8 for Python and Markdown
+* text=auto eol=lf
+
+# Python files are UTF-8
+*.py text eol=lf working-tree-encoding=UTF-8
+
+# Markdown files are UTF-8
+*.md text eol=lf working-tree-encoding=UTF-8

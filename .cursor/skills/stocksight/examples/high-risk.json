@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "generated_by": "StockSight-Skill",
+  "mode": "detailed",
+  "provider": "example-high-risk",
+  "failed_codes": [],
+  "quality_notes": [],
+  "report": {
+    "title": "高风险详细样例",
+    "summary": "风险样例今日收 RMB 18.92，涨跌幅 +9.98%，出现量比、换手率、RSI 和顶背离风险。",
+    "stocks": [
+      {
+        "code": "600999",
+        "name": "风险样例",
+        "current_price": 18.92,
+        "prev_close": 17.21,
+        "open_price": 17.38,
+        "high": 18.93,
+        "low": 17.20,
+        "volume": 126800000,
+        "amount": 2399000000.0,
+        "volume_ratio": 5.62,
+        "change_percent": 9.98,
+        "turnover_rate": 24.6,
+        "timestamp": "2026-05-20 15:00:00",
+        "market": "sh",
+        "raw": {
+          "provider": "example",
+          "turnover_rate_source": "provider_field"
+        }
+      }
+    ],
+    "signals": [
+      {
+        "stock_code": "600999",
+        "risk_type": "量比偏离",
+        "level": 3,
+        "deviation_value": 4.62,
+        "deviation_unit": "x",
+        "description": "量比显著放大，短线资金拥挤度较高。"
+      },
+      {
+        "stock_code": "600999",
+        "risk_type": "换手率异常",
+        "level": 3,
+        "deviation_value": 24.6,
+        "deviation_unit": "%",
+        "description": "换手率处于高位，筹码分歧明显。"
+      },
+      {
+        "stock_code": "600999",
+        "risk_type": "价格异动",
+        "level": 3,
+        "deviation_value": 9.98,
+        "deviation_unit": "%",
+        "description": "价格接近涨停区间，需警惕冲高回落。"
+      }
+    ],
+    "data_source": "example snapshot",
+    "timestamp": "2026-05-20 15:09:00",
+    "news": [
+      {
+        "title": "风险样例盘中放量冲高",
+        "source": "示例资讯",
+        "url": "https://example.com/high-risk",
+        "published_at": "2026-05-20",
+        "snippet": "用于高风险视觉回归样例，不代表真实新闻。"
+      }
+    ],
+    "technical": {
+      "macd": {
+        "dif": [0.0, 0.62, 0.74, 0.81, 0.76, 0.68, 0.52],
+        "dea": [0.0, 0.40, 0.55, 0.66, 0.70, 0.71, 0.69],
+        "macd": [0.0, 0.44, 0.38, 0.30, 0.12, -0.06, -0.34],
+        "dates": ["2026-05-12", "2026-05-13", "2026-05-14", "2026-05-15", "2026-05-18", "2026-05-19", "2026-05-20"]
+      },
+      "rsi": {
+        "values": [66.0, 71.2, 76.8, 82.4, 84.0, 80.2, 78.5],
+        "dates": ["2026-05-12", "2026-05-13", "2026-05-14", "2026-05-15", "2026-05-18", "2026-05-19", "2026-05-20"],
+        "period": 14
+      },
+      "signals": [
+        {
+          "indicator": "RSI",
+          "signal_type": "overbought",
+          "level": 2,
+          "direction": "bearish",
+          "date": "2026-05-20",
+          "value": 78.5,
+          "description": "超买：RSI 高于 70，需警惕追高风险。"
+        },
+        {
+          "indicator": "MACD",
+          "signal_type": "bearish_divergence",
+          "level": 2,
+          "direction": "bearish",
+          "date": "2026-05-20",
+          "value": 0.0,
+          "description": "顶背离：价格创阶段新高，但 MACD DIF 未同步创新高，见顶风险需警惕。"
+        }
+      ],
+      "notes": [],
+      "trend": {
+        "macd_alignment": "bearish",
+        "macd_alignment_desc": "空头排列：DIF(0.5200) < DEA(0.6900)，短线偏空",
+        "macd_histogram_trend": "expanding",
+        "rsi_trend": "overbought_pullback",
+        "rsi_trend_desc": "RSI 超买后回落：从 84.0 回落至 78.5，短线动能减弱",
+        "divergence": "bearish",
+        "divergence_desc": "顶背离：价格创阶段新高，但 MACD DIF 未同步创新高，见顶风险需警惕"
+      }
+    }
+  }
+}

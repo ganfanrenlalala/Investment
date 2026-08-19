@@ -1,0 +1,11 @@
+{
+  "stock_sight": {
+    "news_provider": "tavily",
+    "tavily": {
+      "api_key": "tvly-xxx"
+    },
+    "serpapi": {
+      "api_key": "serpapi-xxx"
+    }
+  }
+}

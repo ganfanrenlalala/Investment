@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "generated_by": "StockSight-Skill",
+  "mode": "detailed",
+  "provider": "example-no-technical",
+  "failed_codes": [],
+  "quality_notes": [
+    "历史行情不可用，MACD/RSI/BOLL/KDJ 未计算。"
+  ],
+  "report": {
+    "title": "无技术指标样例",
+    "summary": "示例银行今日收 RMB 5.28，涨跌幅 -0.38%，历史指标暂不可用。",
+    "stocks": [
+      {
+        "code": "600000",
+        "name": "示例银行",
+        "current_price": 5.28,
+        "prev_close": 5.30,
+        "open_price": 5.31,
+        "high": 5.34,
+        "low": 5.25,
+        "volume": 14800000,
+        "amount": 78100000.0,
+        "volume_ratio": 0.0,
+        "change_percent": -0.38,
+        "turnover_rate": 0.0,
+        "timestamp": "2026-05-20 15:00:00",
+        "market": "sh",
+        "raw": {
+          "provider": "example",
+          "turnover_rate_source": "provider_field_untrusted"
+        }
+      }
+    ],
+    "signals": [],
+    "data_source": "example snapshot",
+    "timestamp": "2026-05-20 15:06:00",
+    "news": [],
+    "technical": null
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "generated_by": "StockSight-Skill",
+  "mode": "detailed",
+  "provider": "example-a-share",
+  "failed_codes": [],
+  "quality_notes": [],
+  "report": {
+    "title": "A股详细样例",
+    "summary": "柘中股份今日收 RMB 10.86，涨跌幅 +2.74%，量价偏强并伴随 RSI 偏热信号。",
+    "stocks": [
+      {
+        "code": "002346",
+        "name": "柘中股份",
+        "current_price": 10.86,
+        "prev_close": 10.57,
+        "open_price": 10.62,
+        "high": 11.08,
+        "low": 10.51,
+        "volume": 35860000,
+        "amount": 389400000.0,
+        "volume_ratio": 1.86,
+        "change_percent": 2.74,
+        "turnover_rate": 8.4,
+        "timestamp": "2026-05-20 15:00:00",
+        "market": "sz",
+        "raw": {
+          "provider": "example",
+          "turnover_rate_source": "derived_float_shares"
+        }
+      }
+    ],
+    "signals": [
+      {
+        "stock_code": "002346",
+        "risk_type": "量比偏离",
+        "level": 2,
+        "deviation_value": 0.86,
+        "deviation_unit": "x",
+        "description": "量比高于常态区间，短线资金活跃度上升。"
+      },
+      {
+        "stock_code": "002346",
+        "risk_type": "换手率异常",
+        "level": 2,
+        "deviation_value": 8.4,
+        "deviation_unit": "%",
+        "description": "换手率偏高，需观察资金持续性。"
+      }
+    ],
+    "data_source": "example snapshot",
+    "timestamp": "2026-05-20 15:08:00",
+    "news": [
+      {
+        "title": "柘中股份盘中活跃，资金关注度提升",
+        "source": "示例资讯",
+        "url": "https://example.com/a-share",
+        "published_at": "2026-05-20",
+        "snippet": "用于固定样例展示，不代表真实新闻。"
+      }
+    ],
+    "technical": {
+      "macd": {
+        "dif": [0.0, 0.03, 0.06, 0.08, 0.11, 0.13, 0.12],
+        "dea": [0.0, 0.02, 0.04, 0.06, 0.08, 0.10, 0.11],
+        "macd": [0.0, 0.02, 0.04, 0.04, 0.06, 0.06, 0.02],
+        "dates": ["2026-05-12", "2026-05-13", "2026-05-14", "2026-05-15", "2026-05-18", "2026-05-19", "2026-05-20"]
+      },
+      "rsi": {
+        "values": [52.4, 56.8, 59.1, 61.2, 63.5, 66.0, 67.8],
+        "dates": ["2026-05-12", "2026-05-13", "2026-05-14", "2026-05-15", "2026-05-18", "2026-05-19", "2026-05-20"],
+        "period": 14
+      },
+      "signals": [
+        {
+          "indicator": "RSI",
+          "signal_type": "heated",
+          "level": 1,
+          "direction": "bearish",
+          "date": "2026-05-20",
+          "value": 67.8,
+          "description": "偏热：RSI 高于 60，动能偏强但需观察持续性。"
+        }
+      ],
+      "notes": [],
+      "trend": {
+        "macd_alignment": "bullish",
+        "macd_alignment_desc": "多头排列：DIF(0.1200) > DEA(0.1100)，短线偏多",
+        "macd_histogram_trend": "contracting",
+        "rsi_trend": "heated",
+        "rsi_trend_desc": "RSI(67.8) 处于偏高区域，需观察是否超买",
+        "divergence": "",
+        "divergence_desc": ""
+      }
+    }
+  }
+}

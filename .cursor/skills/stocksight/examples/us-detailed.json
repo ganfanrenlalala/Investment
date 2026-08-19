@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "generated_by": "StockSight-Skill",
+  "mode": "detailed",
+  "provider": "example-us",
+  "failed_codes": [],
+  "quality_notes": [],
+  "report": {
+    "title": "美股详细样例",
+    "summary": "Tesla 今日收 USD 184.2300，涨跌幅 +1.92%，技术面偏强但尚未出现高风险信号。",
+    "stocks": [
+      {
+        "code": "TSLA",
+        "name": "Tesla",
+        "current_price": 184.23,
+        "prev_close": 180.76,
+        "open_price": 181.15,
+        "high": 187.40,
+        "low": 179.92,
+        "volume": 92450000,
+        "amount": 17030000000.0,
+        "volume_ratio": 0.0,
+        "change_percent": 1.92,
+        "turnover_rate": 0.0,
+        "timestamp": "2026-05-20 16:00:00",
+        "market": "us",
+        "raw": {
+          "provider": "example"
+        }
+      }
+    ],
+    "signals": [
+      {
+        "stock_code": "TSLA",
+        "risk_type": "价格异动",
+        "level": 1,
+        "deviation_value": 1.92,
+        "deviation_unit": "%",
+        "description": "价格上涨但未进入高风险区间，观察成交量确认。"
+      }
+    ],
+    "data_source": "example snapshot",
+    "timestamp": "2026-05-20 16:05:00",
+    "news": [
+      {
+        "title": "Tesla shares edge higher in technology sector rebound",
+        "source": "Example News",
+        "url": "https://example.com/tsla",
+        "published_at": "2026-05-20",
+        "snippet": "Static example news for rendering comparison."
+      }
+    ],
+    "technical": {
+      "macd": {
+        "dif": [0.0, 0.18, 0.28, 0.35, 0.44, 0.50, 0.55],
+        "dea": [0.0, 0.10, 0.18, 0.25, 0.32, 0.39, 0.46],
+        "macd": [0.0, 0.16, 0.20, 0.20, 0.24, 0.22, 0.18],
+        "dates": ["2026-05-12", "2026-05-13", "2026-05-14", "2026-05-15", "2026-05-18", "2026-05-19", "2026-05-20"]
+      },
+      "rsi": {
+        "values": [48.2, 51.5, 55.0, 57.4, 59.8, 61.0, 62.4],
+        "dates": ["2026-05-12", "2026-05-13", "2026-05-14", "2026-05-15", "2026-05-18", "2026-05-19", "2026-05-20"],
+        "period": 14
+      },
+      "signals": [
+        {
+          "indicator": "MACD",
+          "signal_type": "golden_cross",
+          "level": 0,
+          "direction": "bullish",
+          "date": "2026-05-18",
+          "value": 0.12,
+          "description": "MACD 金叉：DIF 上穿 DEA，短线偏多。"
+        }
+      ],
+      "notes": [],
+      "trend": {
+        "macd_alignment": "bullish",
+        "macd_alignment_desc": "多头排列：DIF(0.5500) > DEA(0.4600) > 0，动能偏多",
+        "macd_histogram_trend": "flat",
+        "rsi_trend": "heated",
+        "rsi_trend_desc": "RSI(62.4) 处于偏高区域，需观察是否超买",
+        "divergence": "",
+        "divergence_desc": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+name: Publish Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/release.yml"
+      - "docs/releases/**"
+      - "docs/images/stocksight-report-full.png"
+      - "docs/images/stocksight-lifecycle.png"
+      - "formatter/html_utils.py"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve release version
+        id: version
+        shell: bash
+        run: |
+          version="$(python -c "import re; text=open('formatter/html_utils.py', encoding='utf-8').read(); print(re.search(r'VERSION = \"([^\"]+)\"', text).group(1))")"
+          tag="v${version}"
+          test -f "docs/releases/${tag}.md"
+          git rev-parse "refs/tags/${tag}" >/dev/null
+          echo "tag=${tag}" >> "${GITHUB_OUTPUT}"
+
+      - name: Create or update GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.version.outputs.tag }}
+        shell: bash
+        run: |
+          if gh release view "${TAG}" >/dev/null 2>&1; then
+            gh release edit "${TAG}" \
+              --title "StockSight ${TAG}" \
+              --notes-file "docs/releases/${TAG}.md"
+            gh release upload "${TAG}" \
+              docs/images/stocksight-report-full.png \
+              docs/images/stocksight-lifecycle.png \
+              --clobber
+          else
+            gh release create "${TAG}" \
+              --verify-tag \
+              --title "StockSight ${TAG}" \
+              --notes-file "docs/releases/${TAG}.md" \
+              docs/images/stocksight-report-full.png \
+              docs/images/stocksight-lifecycle.png
+          fi
