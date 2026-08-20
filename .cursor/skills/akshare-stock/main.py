@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import sys
 from typing import Any, Dict
 
 from adapters import AkshareAdapter
@@ -266,6 +267,8 @@ def dispatch(intent_obj, adapter: AkshareAdapter) -> Dict[str, Any]:
 
 
 def main() -> None:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description="A股分析 Skill 基础框架")
     parser.add_argument("--query", required=True, help="自然语言请求，例如：分析 600519 最近 30 天 K线")
     parser.add_argument("--platform", default="qq", choices=["qq", "telegram"], help="输出平台")

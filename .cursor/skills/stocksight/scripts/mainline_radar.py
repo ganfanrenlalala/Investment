@@ -72,6 +72,10 @@ def _fetch_rows(provider: EastMoneyDataSource, board: str) -> list:
 
 
 def main() -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
     args = parse_args()
     provider = EastMoneyDataSource(timeout=args.timeout)
     rows = _fetch_rows(provider, args.board)
