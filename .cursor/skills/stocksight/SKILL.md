@@ -68,8 +68,10 @@ With `--strategy mainline`, detailed reports separate "mainline direction" from 
 For a market-wide A-share mainline radar scan:
 
 ```bash
-python scripts/mainline_radar.py --board all --limit 30 --out outputs/mainline-radar/today.md
+python3 .cursor/skills/stocksight/scripts/mainline_radar.py --board all --limit 30 --out outputs/mainline-radar/today.md
 ```
+
+Default `--provider auto` uses AkShare/Sina sector lists first. EastMoney `push2` is a fallback only; Cloud VMs are often blocked there.
 
 The radar reports automatic observable heat separately from the user's full 10-item mainline score. Unknown items are listed as pending; do not count them as zero or as passed. Use the radar to find directions, then use detailed reports with `--strategy mainline` or `--strategy swing` for single-stock fit and timing.
 

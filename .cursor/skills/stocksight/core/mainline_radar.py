@@ -223,14 +223,20 @@ def render_mainline_radar_markdown(
     *,
     title: str = "StockSight 主线雷达",
     market_change: float = 0.0,
+    data_source: str = "",
 ) -> str:
     """Render radar results as Markdown."""
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    source_line = f"- 板块数据源：{data_source}" if data_source else ""
     lines = [
         f"# {title}",
         "",
         f"- 生成时间：{now}",
         f"- 大盘参考涨跌幅：{market_change:+.2f}%",
+    ]
+    if source_line:
+        lines.append(source_line)
+    lines.extend([
         "- 说明：自动雷达分只用于发现方向；完整 10 项主线评分达到 6 分，才进入观察/候选流程。",
         "- 原则：脚本拿不到的数据标为待确认，不能按 0 分处理。",
         "",
@@ -238,7 +244,7 @@ def render_mainline_radar_markdown(
         "",
         "| 排名 | 类型 | 板块 | 涨跌幅 | 领涨股 | 领涨幅 | 上涨/总数 | 自动雷达分 | 状态 |",
         "|---:|---|---|---:|---|---:|---:|---:|---|",
-    ]
+    ])
 
     for index, item in enumerate(results, 1):
         sector = item.sector

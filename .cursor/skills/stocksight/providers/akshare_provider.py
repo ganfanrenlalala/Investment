@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Optional AkShare quote and history provider.
+"""Optional AkShare quote, history, and sector-list provider.
 
 AkShare is a broad third-party data library with a heavier dependency tree than
 StockSight's built-in HTTP providers, so this module imports it lazily. When the
@@ -54,8 +54,62 @@ def _code_value(value) -> str:
     return text.zfill(6) if text.isdigit() else text
 
 
+def _pick(record: dict, *keys: str, default=""):
+    for key in keys:
+        value = record.get(key)
+        if value not in (None, "", "-", "--"):
+            return value
+    return default
+
+
+def sector_rows_from_records(records: List[dict], board_type: str) -> List[Dict]:
+    """Normalize AkShare/Sina sector tables into mainline-radar row dicts."""
+    rows: List[Dict] = []
+    seen = set()
+    for index, record in enumerate(records):
+        if not isinstance(record, dict):
+            continue
+        name = str(
+            _pick(record, "板块", "板块名称", "行业", "概念名称", "指数名称", "名称") or ""
+        ).strip()
+        if not name or name in seen:
+            continue
+        seen.add(name)
+        code = str(
+            _pick(record, "label", "代码", "板块代码", "BK代码") or f"{board_type}-{index:03d}"
+        ).strip()
+        rows.append(
+            {
+                "code": code,
+                "name": name,
+                "board_type": board_type,
+                "change": _num(
+                    record, "涨跌幅", "今日涨跌幅", "涨跌幅%", "涨跌", "涨跌幅(%)"
+                ),
+                "turnover_rate": _num(record, "换手率", "换手率%"),
+                "up_count": _int(record, "上涨家数", "上涨"),
+                "down_count": _int(record, "下跌家数", "下跌"),
+                "leader": str(
+                    _pick(record, "领涨股", "领涨股票", "领涨股名称", "股票名称") or ""
+                ).strip(),
+                "leader_change": _num(
+                    record,
+                    "个股-涨跌幅",
+                    "领涨股-涨跌幅",
+                    "领涨股票-涨跌幅",
+                    "领涨股涨跌幅",
+                    "个股涨跌幅",
+                ),
+                "main_net_inflow": _num(record, "主力净流入", "主力净流入-净额"),
+                "index_price": _num(record, "平均价格", "最新价", "现价"),
+                "source": str(record.get("_source") or "akshare"),
+            }
+        )
+    return rows
+
+
 class AkShareDataSource(DataSource):
-    """Optional AkShare data source for A-share quotes and daily K-lines."""
+    """Optional AkShare data source for A-share quotes, K-lines, and sector lists."""
 
     def __init__(self, ak_module=None):
         self._ak = ak_module
@@ -177,5 +231,52 @@ class AkShareDataSource(DataSource):
             )
         return StockHistory(code=code, bars=bars[-days:])
 
+    def get_sector_list(self, board_type: str = "industry") -> List[Dict]:
+        """Fetch industry/concept boards without EastMoney push2.
 
-__all__ = ["AkShareDataSource"]
+        Cloud VMs are often blocked by push2.eastmoney.com. Prefer Sina-backed
+        AkShare endpoints that already work in the daily recap.
+        """
+        board_type = board_type or "industry"
+        if board_type not in ("industry", "concept"):
+            raise ValueError("board_type must be 'industry' or 'concept'")
+
+        ak = self._load_akshare()
+        if board_type == "concept":
+            candidates = [
+                ("stock_sector_spot", {"indicator": "概念"}),
+                ("stock_board_concept_name_em", {}),
+                ("stock_board_concept_spot_em", {}),
+            ]
+        else:
+            candidates = [
+                ("stock_sector_spot", {"indicator": "新浪行业"}),
+                ("stock_sector_spot", {"indicator": "行业"}),
+                ("stock_board_industry_name_em", {}),
+                ("stock_board_industry_spot_em", {}),
+            ]
+
+        errors: List[str] = []
+        for fn_name, kwargs in candidates:
+            func = getattr(ak, fn_name, None)
+            if func is None:
+                continue
+            try:
+                frame = func(**kwargs)
+                records = _records(frame)
+                for record in records:
+                    if isinstance(record, dict):
+                        record["_source"] = f"akshare:{fn_name}"
+                rows = sector_rows_from_records(records, board_type)
+                if rows:
+                    return rows
+                errors.append(f"{fn_name}: empty")
+            except Exception as exc:
+                errors.append(f"{fn_name}: {exc}")
+
+        raise DataSourceError(
+            "AkShare sector list fetch failed: " + "; ".join(errors[:6])
+        )
+
+
+__all__ = ["AkShareDataSource", "sector_rows_from_records"]

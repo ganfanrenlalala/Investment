@@ -474,6 +474,31 @@ class _FakeAkShare:
             {"日期": "2026-01-02", "开盘": 10.5, "收盘": 10.8, "最高": 11.0, "最低": 10.4, "成交量": 1200},
         ])
 
+    @staticmethod
+    def stock_sector_spot(indicator):
+        if indicator == "新浪行业":
+            return _FakeFrame([
+                {
+                    "板块": "有色金属",
+                    "涨跌幅": 2.36,
+                    "领涨股": "山东黄金",
+                    "领涨股-涨跌幅": 5.0,
+                    "上涨家数": 40,
+                    "下跌家数": 12,
+                }
+            ])
+        if indicator == "概念":
+            return _FakeFrame([
+                {
+                    "label": "gn_gold",
+                    "板块": "黄金概念",
+                    "涨跌幅": 3.52,
+                    "股票名称": "山东黄金",
+                    "个股-涨跌幅": 5.0,
+                }
+            ])
+        return _FakeFrame([])
+
 
 class AkShareProviderTests(unittest.TestCase):
     def test_fetch_parses_a_share_spot_frame(self):
@@ -500,6 +525,33 @@ class AkShareProviderTests(unittest.TestCase):
         self.assertEqual(len(history.bars), 2)
         self.assertEqual(history.bars[0].date, "2026-01-01")
         self.assertAlmostEqual(history.bars[-1].close, 10.80)
+
+    def test_get_sector_list_uses_sina_spot_not_eastmoney(self):
+        ds = AkShareDataSource(ak_module=_FakeAkShare)
+
+        industry = ds.get_sector_list("industry")
+        concept = ds.get_sector_list("concept")
+
+        self.assertEqual(industry[0]["name"], "有色金属")
+        self.assertAlmostEqual(industry[0]["change"], 2.36)
+        self.assertEqual(industry[0]["leader"], "山东黄金")
+        self.assertEqual(concept[0]["name"], "黄金概念")
+        self.assertEqual(concept[0]["leader"], "山东黄金")
+        self.assertAlmostEqual(concept[0]["leader_change"], 5.0)
+        self.assertEqual(concept[0]["code"], "gn_gold")
+        self.assertIn("akshare:stock_sector_spot", industry[0]["source"])
+
+    def test_sector_rows_from_records_maps_sina_columns(self):
+        from providers.akshare_provider import sector_rows_from_records
+
+        rows = sector_rows_from_records(
+            [{"板块": "陶瓷", "涨跌幅": "3.22", "股票名称": "某股", "个股-涨跌幅": "8.1"}],
+            "industry",
+        )
+        self.assertEqual(rows[0]["name"], "陶瓷")
+        self.assertAlmostEqual(rows[0]["change"], 3.22)
+        self.assertEqual(rows[0]["leader"], "某股")
+        self.assertAlmostEqual(rows[0]["leader_change"], 8.1)
 
     def test_fetch_raises_data_source_error_when_package_missing(self):
         ds = AkShareDataSource()

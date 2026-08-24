@@ -105,6 +105,15 @@ class MainlineRadarTests(unittest.TestCase):
         self.assertIn("10项主线评分待确认", markdown)
         self.assertIn("- [ ]", markdown)
 
+    def test_render_markdown_includes_data_source(self):
+        result = evaluate_sector_radar(SectorRadarInput(
+            code="BK2",
+            name="强方向",
+            change_percent=4.0,
+        ))
+        markdown = render_mainline_radar_markdown([result], data_source="akshare")
+        self.assertIn("板块数据源：akshare", markdown)
+
 
 if __name__ == "__main__":
     unittest.main()
