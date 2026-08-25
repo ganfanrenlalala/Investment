@@ -1,0 +1,4 @@
+gold exit=0
+Scrape ID: 01a037e3-0a7a-724c-a40e-a18fb56f9586
+gold-te exit=0
+nasdaq-semi exit=0
