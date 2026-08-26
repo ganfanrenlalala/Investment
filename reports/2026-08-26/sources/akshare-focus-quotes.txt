@@ -1,0 +1,27 @@
+Au99.99 first=1003.0 last=1001.0 time=15:29:00 update=2026年08月26日 15:29:57
+prev hist close date=2026-08-25 close=1000.0
+chg vs hist prev: +0.10%
+山东黄金(sh600547) price=34.49 prev=34.97 chg=-1.37% high=35.590 low=34.400 vol=96309249 amount=3367814504.000
+黄金ETF(sh518880) price=9.517 prev=9.533 chg=-0.17% high=9.588 low=9.498 vol=571279384 amount=5450348265.000
+中金黄金(sh600489) price=26.43 prev=26.24 chg=+0.72% high=27.180 low=26.100 vol=87603748 amount=2329736398.000
+中芯国际(sh688981) price=124.15 prev=120.0 chg=+3.46% high=124.600 low=120.220 vol=40108093 amount=4931938236.000
+寒武纪(sh688256) EMPTY: Forbidden
+凯莱英(sz002821) price=171.9 prev=172.23 chg=-0.19% high=179.670 low=171.700 vol=15184636 amount=2661487084.750
+药明康德(sh603259) price=159.25 prev=161.0 chg=-1.09% high=163.400 low=157.910 vol=34418484 amount=5489620558.000
+恒瑞医药(sh600276) price=46.74 prev=46.49 chg=+0.54% high=47.480 low=46.490 vol=78295358 amount=3679128467.000
+海鸥住工(sz002084) price=4.79 prev=4.35 chg=+10.11% high=4.790 low=4.790 vol=3327470 amount=15938581.300
+冀衡医药(sz002742) price=5.15 prev=4.68 chg=+10.04% high=5.150 low=5.150 vol=12871176 amount=66286556.400
+千金药业(sh600479) price=11.02 prev=10.02 chg=+9.98% high=11.020 low=10.980 vol=22291341 amount=245578988.000
+金辰股份(sh603396) price=28.44 prev=25.85 chg=+10.02% high=28.440 low=28.440 vol=4057324 amount=115390295.000
+融发核电(sz002366) EMPTY: Forbidden
+
+全行业中相关:
+  电子器件: +0.128% 领涨=华映科技 +10.12%
+  电子信息: +0.321% 领涨=兆日科技 +16.75%
+  生物制药: +0.528% 领涨=千金药业 +9.98%
+  医疗器械: -0.059% 领涨=东富龙 +4.92%
+  有色金属: +1.095% 领涨=精艺股份 +10.03%
+
+=== 生物制药成分领涨样本已在上 ===
+em industry fail: ConnectionError ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+em concept fail: HTTPError 502 Server Error: Bad Gateway for url: https://push2.eastmoney.com/api/qt/clist/get?pn=1&pz=100&po=1&np=1&ut=bd1d9ddb04089700cf9c27f6f7426281&fltt=2&invt=2&fid=f12&fs=m%3A90+t%3A3+f%3A%2150&fields=f2%2Cf3%2Cf4%2Cf8%2Cf12%2Cf14%2Cf15%2Cf16%2Cf17%2Cf18%2Cf20%2Cf21%2Cf24%2Cf25%2Cf22%2Cf33%2Cf11%2Cf62%2Cf128%2Cf124%2Cf107%2Cf104%2Cf105%2Cf136
