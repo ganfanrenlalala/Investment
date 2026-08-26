@@ -95,7 +95,12 @@ def _fmt_pct(value: Any) -> str:
     return f"{num:+.2f}%"
 
 
-def _fmt_amount(value: Any) -> str:
+def _fmt_yi(value: Any) -> str:
+    """Format values that are already in 亿元 (HSGT / THS fund-flow tables)."""
+    num = _safe_float(value)
+    if num is None:
+        return str(value) if value is not None else "?"
+    return f"{num:+.2f}亿"
     num = _safe_float(value)
     if num is None:
         return str(value) if value is not None else "?"
@@ -614,35 +619,82 @@ def render_output(intent_obj, result, platform: str = "qq") -> str:
 
         if scope == "market":
             lines = [f"💰 市场资金流向 · {ts}", ""]
-            if not items:
+            flavor = data.get("flavor") or ""
+            sector_items = data.get("sector_items") or []
+            if flavor == "hsgt":
+                lines.append("东财大盘主力(push2his)不可用，改为沪深港通。")
+                lines.append("")
+            if not items and not sector_items:
                 lines.extend(["暂无市场资金流数据", "", "数据源: akshare"])
                 return "\n".join(lines)
 
-            latest = items[0] if isinstance(items[0], dict) else {}
-            d = _fmt_date(_pick(latest, ["日期", "交易日期", "date", "时间"]))
-            
-            # 尝试获取主力净流入等字段
-            main_flow = _pick(latest, ["主力净流入-净额", "主力净流入", "净额"])
-            super_flow = _pick(latest, ["超大单净流入-净额", "超大单净流入"])
-            
-            lines.append(f"最新({d})")
-            if main_flow is not None:
-                lines.append(f"- 主力净流入: {_fmt_amount(main_flow)}")
-            if super_flow is not None:
-                lines.append(f"- 超大单净流入: {_fmt_amount(super_flow)}")
+            if items:
+                latest = items[0] if isinstance(items[0], dict) else {}
+                if flavor == "hsgt" or ("资金净流入" in latest and "板块" in latest):
+                    d = _fmt_date(_pick(latest, ["交易日", "日期", "交易日期", "date", "时间"]))
+                    lines.append(f"沪深港通 · {d}")
+                    for item in items:
+                        if not isinstance(item, dict):
+                            continue
+                        board = _pick(item, ["板块", "类型"], "?")
+                        direction = _pick(item, ["资金方向"], "")
+                        extra = f" {direction}" if direction else ""
+                        # 成交净买额才是买卖差额；资金净流入在该接口上常被填成额度(如港股通 420 亿)
+                        buy = _pick(item, ["成交净买额"])
+                        remain = _pick(item, ["当日资金余额"])
+                        if buy is not None:
+                            remain_text = f" | 余额 {_fmt_yi(remain)}" if remain not in (None, 0, 0.0) else ""
+                            lines.append(f"- {board}{extra}: 成交净买 {_fmt_yi(buy)}{remain_text}")
+                            continue
+                        inflow = _pick(item, ["资金净流入", "净流入"])
+                        if inflow is not None:
+                            lines.append(f"- {board}{extra}: {_fmt_yi(inflow)}")
+                else:
+                    d = _fmt_date(_pick(latest, ["日期", "交易日期", "date", "时间", "交易日"]))
+                    main_flow = _pick(latest, ["主力净流入-净额", "主力净流入", "净额", "资金净流入"])
+                    super_flow = _pick(latest, ["超大单净流入-净额", "超大单净流入"])
+                    lines.append(f"最新({d})")
+                    if main_flow is not None:
+                        lines.append(f"- 主力净流入: {_fmt_amount(main_flow)}")
+                    if super_flow is not None:
+                        lines.append(f"- 超大单净流入: {_fmt_amount(super_flow)}")
+                    lines.append("")
+                    lines.append("近5日主力资金:")
+                    for item in items[:5]:
+                        if not isinstance(item, dict):
+                            lines.append(f"- {item}")
+                            continue
+                        day = _fmt_date(_pick(item, ["日期", "交易日期", "date", "时间", "交易日"]))
+                        val = _pick(item, ["主力净流入-净额", "主力净流入", "净额", "净流入", "资金净流入"])
+                        if val is not None:
+                            lines.append(f"- {day}: {_fmt_amount(val)}")
 
-            lines.append("")
-            lines.append("近5日主力资金:")
-            for item in items[:5]:
-                if not isinstance(item, dict):
-                    lines.append(f"- {item}")
-                    continue
-                day = _fmt_date(_pick(item, ["日期", "交易日期", "date", "时间"]))
-                val = _pick(item, ["主力净流入-净额", "主力净流入", "净额", "净流入"])
-                if val is not None:
-                    lines.append(f"- {day}: {_fmt_amount(val)}")
+            if sector_items:
+                if items:
+                    lines.append("")
+                lines.append("行业净流入前5（同花顺，亿元）:")
+                for idx, item in enumerate(sector_items[:5], start=1):
+                    if not isinstance(item, dict):
+                        lines.append(f"{idx}. {item}")
+                        continue
+                    name = _pick(item, ["名称", "行业", "板块名称", "行业名称"], "?")
+                    inflow = _pick(
+                        item,
+                        ["净额", "今日主力净流入-净额", "主力净流入", "今日净流入", "净流入"],
+                    )
+                    pct = _pick(item, ["行业-涨跌幅", "今日涨跌幅", "涨跌幅", "涨跌幅%"])
+                    pct_text = f" | {_fmt_pct(pct)}" if pct is not None else ""
+                    if inflow is not None:
+                        lines.append(f"{idx}. {name}: {_fmt_yi(inflow)}{pct_text}")
+                    else:
+                        lines.append(f"{idx}. {name}{pct_text}")
 
-            lines.extend(["", "数据源: akshare"])
+            source = "akshare"
+            if flavor == "hsgt":
+                source = "akshare/沪深港通"
+            if sector_items:
+                source += "+同花顺行业"
+            lines.extend(["", f"数据源: {source}"])
             return _truncate("\n".join(lines), MAX_LEN)
 
         if scope == "sector":
@@ -657,11 +709,24 @@ def render_output(intent_obj, result, platform: str = "qq") -> str:
                     lines.append(f"{idx}. {item}")
                     continue
                 name = _pick(item, ["名称", "行业", "板块名称", "行业名称"], "?")
-                inflow = _pick(item, ["今日主力净流入-净额", "主力净流入", "今日净流入", "净流入", "主力净额", "今日主力净流入"])
-                pct = _pick(item, ["今日涨跌幅", "涨跌幅", "涨跌幅%"])
+                inflow = _pick(
+                    item,
+                    [
+                        "净额",
+                        "今日主力净流入-净额",
+                        "主力净流入",
+                        "今日净流入",
+                        "净流入",
+                        "主力净额",
+                        "今日主力净流入",
+                        "流入资金",
+                    ],
+                )
+                pct = _pick(item, ["行业-涨跌幅", "今日涨跌幅", "涨跌幅", "涨跌幅%"])
                 pct_text = f" | {_fmt_pct(pct)}" if pct is not None else ""
                 if inflow is not None:
-                    lines.append(f"{idx}. {name}: {_fmt_amount(inflow)}{pct_text}")
+                    amount = _fmt_yi(inflow) if abs(_safe_float(inflow) or 0) < 1e4 else _fmt_amount(inflow)
+                    lines.append(f"{idx}. {name}: {amount}{pct_text}")
                 else:
                     lines.append(f"{idx}. {name}{pct_text}")
 

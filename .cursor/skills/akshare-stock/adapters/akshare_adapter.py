@@ -96,6 +96,19 @@ class AkshareAdapter:
                     break
         return filtered
 
+    def _is_empty_result(self, result: Any) -> bool:
+        if result is None:
+            return True
+        if hasattr(result, "empty"):
+            try:
+                return bool(result.empty)
+            except Exception:
+                pass
+        try:
+            return len(result) == 0
+        except Exception:
+            return False
+
     def _call_api_candidates(self, candidates: list[tuple[str, list[dict]]]) -> tuple[Optional[str], Any, str]:
         errors = []
 
@@ -108,11 +121,34 @@ class AkshareAdapter:
             for kwargs in args_pool:
                 try:
                     result = func(**kwargs)
+                    if self._is_empty_result(result):
+                        errors.append(f"{fn_name}({kwargs}): empty")
+                        continue
                     return fn_name, result, ""
                 except Exception as exc:
                     errors.append(f"{fn_name}({kwargs}): {exc}")
 
         return None, None, "; ".join(errors) if errors else "no callable api found"
+
+    def _inflow_records(self, data: Any, top_n: int) -> list[dict]:
+        records = self._to_records(data, top_n=0)
+        if not isinstance(records, list):
+            return []
+        rows = [item for item in records if isinstance(item, dict)]
+        rows.sort(
+            key=lambda row: _safe_float_local(
+                row.get("净额")
+                or row.get("今日主力净流入-净额")
+                or row.get("主力净流入")
+                or row.get("今日净流入")
+                or row.get("资金净流入")
+            )
+            or -1e18,
+            reverse=True,
+        )
+        if top_n and top_n > 0:
+            return rows[:top_n]
+        return rows
 
     def index_spot(self, top_n: int = 300) -> Dict[str, Any]:
         primary_fn = "stock_zh_index_spot_sina"
@@ -506,28 +542,47 @@ class AkshareAdapter:
 
         trade_date = self._normalize_trade_date(date)
 
-        candidates = [
-            ("stock_market_fund_flow", [{}]),
+        # Cloud VMs are blocked by EastMoney push2/push2his (大盘主力).
+        # Prefer HSGT datacenter-web + THS industry funds, which still work.
+        market_candidates = [
             ("stock_hsgt_fund_flow_summary_em", [{}]),
             ("stock_hsgt_north_net_flow_in_em", [{}]),
-            ("stock_hsgt_hist_em", [{"symbol": "北向资金"}, {"symbol": "沪股通"}, {"symbol": "深股通"}]),
+            ("stock_market_fund_flow", [{}]),
         ]
+        api_name, df, err_msg = self._call_api_candidates(market_candidates)
 
-        api_name, df, err_msg = self._call_api_candidates(candidates)
-        if df is None:
-            return self._error(fn_name, err_msg)
+        sector_api, sector_df, sector_err = self._call_api_candidates(
+            [
+                ("stock_fund_flow_industry", [{"symbol": "即时"}, {}]),
+            ]
+        )
+        if df is None and sector_df is None:
+            return self._error(fn_name, "; ".join(x for x in [err_msg, sector_err] if x))
 
-        if hasattr(df, "iloc"):
+        if api_name == "stock_market_fund_flow" and hasattr(df, "iloc"):
             try:
                 df = df.iloc[::-1]
             except Exception:
                 pass
 
+        flavor = "eastmoney_main"
+        if api_name and "hsgt" in api_name:
+            flavor = "hsgt"
+        elif api_name is None:
+            flavor = "ths_industry"
+
         return self._wrap(
-            api_name or fn_name,
+            api_name or sector_api or fn_name,
             scope="market",
             date=trade_date,
-            items=self._to_records(df, top_n=top_n),
+            flavor=flavor,
+            items=self._to_records(df, top_n=top_n) if df is not None else [],
+            sector_items=self._inflow_records(sector_df, top_n) if sector_df is not None else [],
+            sector_api=sector_api,
+            note=(
+                "东财大盘主力(push2his)不可用时，展示沪深港通与同花顺行业资金，"
+                "不要把空字段当成无行情。"
+            ),
         )
 
     def sector_money_flow(self, top_n: int = 20) -> Dict[str, Any]:
@@ -537,6 +592,7 @@ class AkshareAdapter:
             return err
 
         candidates = [
+            ("stock_fund_flow_industry", [{"symbol": "即时"}, {"symbol": "今日"}, {}]),
             (
                 "stock_sector_fund_flow_rank",
                 [
@@ -547,7 +603,6 @@ class AkshareAdapter:
                     {"sector_type": "行业资金流"},
                 ],
             ),
-            ("stock_fund_flow_industry", [{"symbol": "今日"}, {"symbol": "即时"}, {}]),
             ("stock_sector_fund_flow_summary", [{"sector_type": "行业资金流"}, {}]),
         ]
 
@@ -555,10 +610,15 @@ class AkshareAdapter:
         if df is None:
             return self._error(fn_name, err_msg)
 
+        items = (
+            self._inflow_records(df, top_n)
+            if api_name == "stock_fund_flow_industry"
+            else self._to_records(df, top_n=top_n)
+        )
         return self._wrap(
             api_name or fn_name,
             scope="sector",
-            items=self._to_records(df, top_n=top_n),
+            items=items,
         )
 
     def fundamental(self, symbol: str, top_n: int = 20) -> Dict[str, Any]:

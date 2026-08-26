@@ -137,8 +137,9 @@ skills/akshare-stock/
   - 数据：涨停池、跌停池、连板梯队。
   - 指标：涨停家数、炸板率、最高连板、情绪评分。
 - **资金流向**：
-  - 数据：个股/行业/市场资金流。
-  - 指标：主力净流入 TopN、连续净流入天数、资金集中度。
+  - 市场资金：优先沪深港通（`stock_hsgt_fund_flow_summary_em`）+ 同花顺行业资金（`stock_fund_flow_industry`）。
+  - 东财大盘主力 `stock_market_fund_flow`（push2his）在 Cloud VM 上通常被拒，仅作最后兜底。
+  - 行业资金：默认同花顺即时排行，按净额排序。
 
 ### 3.3 基本面分析
 
