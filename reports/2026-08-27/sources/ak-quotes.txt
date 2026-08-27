@@ -1,0 +1,23 @@
+中芯国际 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+寒武纪 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+山东黄金 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+湖南黄金 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+药明康德 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+恒瑞医药 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+凯莱英 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+康龙化成 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+中微公司 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+圣邦股份 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+ETF fail ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+Gold spot vs prior hist close:
+Au99.99 last tick ~992.8 vs 2026-08-26 close 1000.68 => change -0.79 %
+AU0 last available 2026-08-26 close 1003.00 (当日日线可能尚未入表)
+Nasdaq 08-26 close 26130.20 vs 08-25 26151.30 => -0.08 %
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:00<00:00,  1.66it/s]100%|██████████| 2/2 [00:02<00:00,  1.18s/it]                                             THS 半导体: 涨跌幅=5.12 净流入=251.93 上涨=184 下跌=3 领涨=赛微电子 20.01
+THS 贵金属: 涨跌幅=2.81 净流入=12.04 上涨=14 下跌=0 领涨=湖南黄金 10.02
+THS 化学制药: 涨跌幅=1.37 净流入=3.08 上涨=114 下跌=38 领涨=上海谊众 16.42
+THS 医疗服务: 涨跌幅=0.58 净流入=-12.37 上涨=31 下跌=25 领涨=百花医药 10.03
+THS 医疗器械: 涨跌幅=0.39 净流入=-3.04 上涨=69 下跌=67 领涨=亚辉龙 13.26
+THS 生物制品: 涨跌幅=0.32 净流入=-6.37 上涨=31 下跌=23 领涨=康希诺 8.36
+THS 医药商业: 涨跌幅=0.15 净流入=-3.5 上涨=20 下跌=11 领涨=人民同泰 3.93
