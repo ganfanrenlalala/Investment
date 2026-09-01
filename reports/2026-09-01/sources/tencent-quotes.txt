@@ -1,0 +1,22 @@
+000001 上证指数: price=3979.89 pct=-0.16% amount=94430756 turnover=1.18% vol=573538949
+399001 深证成指: price=13872.38 pct=-1.02% amount=108909526 turnover=2.79% vol=684714331
+399006 创业板指: price=3393.43 pct=-1.32% amount=50708339 turnover=3.62% vol=194899306
+000300 沪深300: price=4611.44 pct=-0.30% amount=53570836 turnover=0.64% vol=214869581
+000688 科创50: price=1647.53 pct=-2.19% amount=7108191 turnover=1.07% vol=7533502
+688981 中芯国际: price=126.11 pct=-2.01% amount=298621 turnover=1.18% vol=23578097
+688256 寒武纪: price=1109.00 pct=-0.29% amount=1073134 turnover=1.53% vol=9597923
+300456 赛微电子: price=39.68 pct=-1.44% amount=180581 turnover=7.55% vol=451407
+603259 药明康德: price=154.40 pct=-0.25% amount=450507 turnover=1.19% vol=293400
+600276 恒瑞医药: price=46.23 pct=0.35% amount=214640 turnover=0.73% vol=464740
+002821 凯莱英: price=160.88 pct=-0.45% amount=153892 turnover=3.06% vol=96879
+600547 山东黄金: price=36.89 pct=-2.54% amount=397809 turnover=2.93% vol=1059279
+002155 湖南黄金: price=26.45 pct=-2.86% amount=200969 turnover=4.81% vol=751396
+518880 黄金ETF华安: price=9.118 pct=-0.19% amount=411888 turnover=3.87% vol=4510449
+159937 黄金ETF博时: price=9.098 pct=-0.14% amount=53399 turnover=1.24% vol=586084
+600892 大晟文化: price=4.86 pct=9.95% amount=3912 turnover=1.44% vol=80485
+300413 芒果超媒: price=20.38 pct=20.02% amount=279379 turnover=13.45% vol=1373763
+002855 捷荣技术: price=17.71 pct=10.00% amount=43455 turnover=10.01% vol=246498
+000635 英 力 特: price=7.22 pct=10.06% amount=2229 turnover=0.84% vol=30866
+688601 力芯微: price=63.89 pct=-1.19% amount=44406 turnover=5.19% vol=6935721
+002084 海鸥住工: price=7.02 pct=10.03% amount=62486 turnover=13.81% vol=890110
+002679 福建金森: price=12.91 pct=9.97% amount=7894 turnover=2.59% vol=61149

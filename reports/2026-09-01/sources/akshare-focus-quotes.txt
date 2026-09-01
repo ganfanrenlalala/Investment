@@ -1,0 +1,76 @@
+=== Au99.99 hist ===
+            date    open    close     low     high
+2346  2026-08-20   945.0   968.14  945.00   972.90
+2347  2026-08-21   967.0   983.56  962.00   986.60
+2348  2026-08-24   990.0  1004.21  985.00  1006.60
+2349  2026-08-25  1004.0  1000.00  998.50  1012.60
+2350  2026-08-26  1002.0  1000.68  992.08  1007.90
+2351  2026-08-27   999.0   992.29  991.00  1002.20
+2352  2026-08-28   995.0   995.05  986.00   997.66
+2353  2026-08-31   993.0   962.00  951.00  1000.00
+
+=== THS 净流入后5 / 涨跌后5 ===
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:00<00:00,  2.33it/s]100%|██████████| 2/2 [00:00<00:00,  2.88it/s]                                             净流入前10:
+        板块   涨跌幅    净流入  上涨家数  下跌家数   领涨股  领涨股-涨跌幅
+13      银行  2.15  83.81    41     1  邮储银行     4.18
+3       保险  3.16  27.16     5     0  中国人保     6.17
+32      证券  1.15  24.25    43     4  华林证券    10.01
+28      电力  1.21  19.06    94    11  协鑫能科     9.97
+2       零售  3.30  16.58    67     3  茂业商业    10.08
+30    化学制药  1.18  12.56   116    40   新赣江    10.24
+4     多元金融  3.02   8.26    23     3  香溢融通    10.01
+26  公路铁路运输  1.28   8.07    30     1  大众交通     5.06
+6       白酒  2.85   7.94    19     0  古井贡酒    10.00
+24    工程机械  1.35   6.37    28     7  威博液压     8.39
+
+净流入后10:
+       板块   涨跌幅     净流入  上涨家数  下跌家数   领涨股  领涨股-涨跌幅
+87    半导体 -2.64 -174.48    21   165   英集芯     5.18
+88     元件 -3.19  -93.17     7    56   格利尔     4.01
+71   消费电子 -0.46  -56.94    43    53  慧为智能    11.09
+89  电子化学品 -3.83  -54.23     4    38  海星股份     3.23
+76     电池 -0.68  -48.94    39    67  领湃科技    11.14
+86    小金属 -2.45  -48.89     3    26  天工股份     1.82
+74   通用设备 -0.54  -43.91   100   149  浙江大农    29.98
+82  自动化设备 -1.72  -41.03    30    67   易思维     5.03
+75  光学光电子 -0.62  -37.94    40    61  鸿合科技    10.01
+57   化学制品  0.44  -33.38   114    68  吉华集团    10.00
+
+关注板块:
+ 板块   涨跌幅     净流入    总成交额  上涨家数  下跌家数 领涨股  领涨股-涨跌幅
+半导体 -2.64 -174.48 2219.91    21   165 英集芯     5.18
+  板块  涨跌幅   净流入   总成交额  上涨家数  下跌家数 领涨股  领涨股-涨跌幅
+化学制药 1.18 12.56 378.83   116    40 新赣江    10.24
+  板块  涨跌幅   净流入   总成交额  上涨家数  下跌家数  领涨股  领涨股-涨跌幅
+生物制品 0.61 -1.62 127.49    41    14 近岸蛋白     5.41
+板块  涨跌幅  净流入   总成交额  上涨家数  下跌家数  领涨股  领涨股-涨跌幅
+中药 1.64  3.7 140.43    55    11 千金药业    10.04
+  板块  涨跌幅   净流入   总成交额  上涨家数  下跌家数  领涨股  领涨股-涨跌幅
+医疗器械 1.03 -2.28 193.21   103    35 透景生命    19.99
+  板块  涨跌幅  净流入  总成交额  上涨家数  下跌家数  领涨股  领涨股-涨跌幅
+医药商业  2.0 4.56 50.61    29     3 瑞康医药    10.06
+ 板块   涨跌幅    净流入   总成交额  上涨家数  下跌家数  领涨股  领涨股-涨跌幅
+贵金属 -1.01 -10.35 259.43     5     9 恒邦股份     0.27
+   板块   涨跌幅    净流入   总成交额  上涨家数  下跌家数  领涨股  领涨股-涨跌幅
+电子化学品 -3.83 -54.23 387.26     4    38 海星股份     3.23
+  板块   涨跌幅    净流入   总成交额  上涨家数  下跌家数  领涨股  领涨股-涨跌幅
+消费电子 -0.46 -56.94 466.27    43    53 慧为智能    11.09
+
+=== 关注标的行情(akshare spot em or sina) ===
+spot_em FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+688981 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+688256 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+300456 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+603259            日期    股票代码      开盘      收盘      最高      最低     成交量           成交额    振幅   涨跌幅   涨跌额   换手率
+7  2026-08-31  603259  154.26  154.78  155.45  150.22  476254  7.283350e+09  3.32 -1.66 -2.62  1.93
+8  2026-09-01  603259  154.70  154.40  154.98  152.01  293400  4.505071e+09  1.92 -0.25 -0.38  1.19
+600276 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+002821 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+600547 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+002155 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+518880 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+159937 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+600892 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+300413 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+002855 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+000635 FAIL ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
