@@ -1,0 +1,10 @@
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [00:00<00:06,  1.09it/s] 25%|██▌       | 2/8 [00:01<00:03,  1.89it/s] 38%|███▊      | 3/8 [00:01<00:02,  2.48it/s] 50%|█████     | 4/8 [00:01<00:01,  2.91it/s] 62%|██████▎   | 5/8 [00:01<00:00,  3.17it/s] 75%|███████▌  | 6/8 [00:02<00:00,  3.40it/s] 88%|████████▊ | 7/8 [00:02<00:00,  3.57it/s]100%|██████████| 8/8 [00:02<00:00,  3.82it/s]                                             Traceback (most recent call last):
+  File "/workspace/.cursor/skills/akshare-stock/main.py", line 285, in <module>
+    main()
+  File "/workspace/.cursor/skills/akshare-stock/main.py", line 280, in main
+    output = render_output(intent_obj, result, platform=args.platform)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cursor/skills/akshare-stock/formatter.py", line 224, in render_output
+    f"{direction} {label}: {_fmt_price(price)} ({_fmt_pct(change)}) | 成交额 {_fmt_amount(amount)}"
+                                                                              ^^^^^^^^^^^
+NameError: name '_fmt_amount' is not defined
