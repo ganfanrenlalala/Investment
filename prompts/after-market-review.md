@@ -2,6 +2,8 @@
 
 在每个 A 股交易日 15:30 执行。必须依次调用三个 skill：`akshare-stock`、`stocksight`、`firecrawl-cli`。不要跳过其中任何一个。数据缺失时写明原因，不要编造行情或结论。
 
+定时任务若使用独立 Automation 模板，以 `prompts/cursor-automation.md` 为准，并与本文件一起遵守；启动后先拉取最新 `master`，不要沿用过期快照里的旧可视化口径。
+
 ## 1. 交易日判断
 
 先用 `akshare-stock` 查询「A股大盘」和「今日涨停统计」。

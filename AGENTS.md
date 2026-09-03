@@ -1,6 +1,6 @@
 # Investment 仓库说明
 
-本仓库用于 A 股交易日收盘复盘。Agent 必须按 `prompts/after-market-review.md` 执行，并调用仓库内三个 skill：`akshare-stock`、`stocksight`、`firecrawl-cli`。
+本仓库用于 A 股交易日收盘复盘。Agent 必须按 `prompts/after-market-review.md` 执行，并调用仓库内三个 skill：`akshare-stock`、`stocksight`、`firecrawl-cli`。Cursor Automation 定时任务提示词见 `prompts/cursor-automation.md`（触发后先 `git fetch origin master` 再读最新文件）。
 
 ## Cursor Cloud specific instructions
 
