@@ -1,0 +1,48 @@
+{
+  "_comment": "格式样例。当天必须改成 reports/YYYY-MM-DD/charts/data.json，并换成采集到的真实数字，禁止照抄。",
+  "date": "YYYY-MM-DD",
+  "indices": [
+    { "name": "上证", "value": 0.19 },
+    { "name": "深成指", "value": -0.35 },
+    { "name": "创业板", "value": -1.00 },
+    { "name": "沪深300", "value": -0.24 }
+  ],
+  "limits": { "up": 52, "down": 8 },
+  "watch_groups": [
+    {
+      "title": "黄金：一句话结论",
+      "items": [
+        { "name": "Au99.99", "value": -0.42 },
+        { "name": "黄金ETF", "value": -0.32 },
+        { "name": "山东黄金", "value": 2.71 }
+      ]
+    },
+    {
+      "title": "半导体：一句话结论",
+      "items": [
+        { "name": "半导体板块", "value": -1.34 },
+        { "name": "中芯国际", "value": -2.82 }
+      ]
+    },
+    {
+      "title": "外盘（标注收盘日）",
+      "items": [
+        { "name": "纳指", "value": -1.03 },
+        { "name": "NVDA", "value": -1.51 }
+      ]
+    },
+    {
+      "title": "医药：一句话结论",
+      "items": [
+        { "name": "化学制药", "value": -1.10 },
+        { "name": "药明康德", "value": 1.03 }
+      ]
+    }
+  ],
+  "fund_flow": [
+    { "name": "净流入第一", "value": 7.48 },
+    { "name": "净流入第二", "value": 3.56 },
+    { "name": "半导体", "value": -48.95 },
+    { "name": "化学制药", "value": -35.65 }
+  ]
+}

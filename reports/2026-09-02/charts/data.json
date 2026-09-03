@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-02",
+  "indices": [
+    { "name": "上证", "value": -0.97 },
+    { "name": "深成指", "value": -1.88 },
+    { "name": "创业板", "value": -2.39 },
+    { "name": "沪深300", "value": -1.38 },
+    { "name": "科创50", "value": -1.82 }
+  ],
+  "limits": { "up": 52, "down": 8 },
+  "watch_groups": [
+    {
+      "title": "黄金：现货/ETF跌，个股分化",
+      "items": [
+        { "name": "Au99.99", "value": -2.13 },
+        { "name": "黄金ETF", "value": -2.37 },
+        { "name": "山东黄金", "value": 2.71 }
+      ]
+    },
+    {
+      "title": "半导体：内外共振偏弱",
+      "items": [
+        { "name": "半导体板块", "value": -1.34 },
+        { "name": "中芯国际", "value": -2.82 }
+      ]
+    },
+    {
+      "title": "外盘（09-01收盘）",
+      "items": [
+        { "name": "纳指", "value": -1.03 },
+        { "name": "NVDA", "value": -1.51 }
+      ]
+    },
+    {
+      "title": "医药：板块弱、龙头抗跌",
+      "items": [
+        { "name": "化学制药", "value": -1.10 },
+        { "name": "药明康德", "value": 1.03 }
+      ]
+    }
+  ],
+  "fund_flow": [
+    { "name": "军工装备", "value": 7.48 },
+    { "name": "军工电子", "value": 3.56 },
+    { "name": "医疗服务", "value": 3.43 },
+    { "name": "互联网电商", "value": 1.36 },
+    { "name": "建筑材料", "value": 1.12 },
+    { "name": "化学制药", "value": -35.65 },
+    { "name": "半导体", "value": -48.95 },
+    { "name": "通信设备", "value": -52.31 },
+    { "name": "证券", "value": -54.25 }
+  ]
+}
