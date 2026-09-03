@@ -1,0 +1,54 @@
+{
+  "date": "2026-09-03",
+  "indices": [
+    { "name": "上证", "value": 0.02 },
+    { "name": "深成指", "value": 0.10 },
+    { "name": "创业板", "value": 0.01 },
+    { "name": "沪深300", "value": 0.10 },
+    { "name": "科创50", "value": -0.40 }
+  ],
+  "limits": { "up": 44, "down": 16 },
+  "watch_groups": [
+    {
+      "title": "黄金：现货/ETF修复，山东黄金分化",
+      "items": [
+        { "name": "Au99.99", "value": 2.13 },
+        { "name": "黄金ETF", "value": 2.28 },
+        { "name": "贵金属板块", "value": 2.40 },
+        { "name": "山东黄金", "value": -1.03 }
+      ]
+    },
+    {
+      "title": "半导体：内弱外强、板块净流出",
+      "items": [
+        { "name": "半导体板块", "value": -0.27 },
+        { "name": "中芯国际", "value": 1.08 }
+      ]
+    },
+    {
+      "title": "外盘（09-02收盘）",
+      "items": [
+        { "name": "纳指", "value": 0.45 },
+        { "name": "NVDA", "value": 3.21 }
+      ]
+    },
+    {
+      "title": "医药：化学制药偏弱，创新药概念偏暖",
+      "items": [
+        { "name": "化学制药", "value": -0.47 },
+        { "name": "创新药概念", "value": 0.99 },
+        { "name": "药明康德", "value": 0.41 }
+      ]
+    }
+  ],
+  "fund_flow": [
+    { "name": "工业金属", "value": 26.22 },
+    { "name": "保险", "value": 19.07 },
+    { "name": "证券", "value": 18.62 },
+    { "name": "通用设备", "value": 17.39 },
+    { "name": "贵金属", "value": 13.14 },
+    { "name": "化学制药", "value": -10.24 },
+    { "name": "半导体", "value": -31.80 },
+    { "name": "通信设备", "value": -40.45 }
+  ]
+}
