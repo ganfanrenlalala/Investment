@@ -90,7 +90,7 @@ reports/YYYY-MM-DD/
 
 纳指、美股半导体在 15:30 通常尚未开盘，使用最近可用收盘或盘前数据，并写明时点。
 
-写完后把当天的 `reports/YYYY-MM-DD/` 文件夹（含 `charts/`）提交并推送到仓库。
+写完后把当天的 `reports/YYYY-MM-DD/` 文件夹（含 `charts/`）提交并推送到仓库，然后开 PR 到 `master` 并合并进 `master`（可用 `open_git_pr` + 合并，或本地 merge 后推送 `master`）。不要只留在临时 agent 分支。
 
 ## 6. 每日可视化（强制）
 

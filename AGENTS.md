@@ -13,4 +13,5 @@
 - 报告写入 `reports/YYYY-MM-DD/`，主文件为 `复盘.md`。
 - 终稿必须含可视化：按 `prompts/after-market-review.md` 第 6 节，写 `charts/data.json` 后运行 `python3 scripts/make_recap_charts.py reports/YYYY-MM-DD/charts/data.json`，把 PNG 嵌入 `复盘.md`。缺数据就省略并注明，不要编造。不要用 Mermaid `pie` 当主图。
 - 不要编造行情。某个 skill 失败时写明原因，用其余来源继续。
+- **交付到 master**：写完当日 `reports/YYYY-MM-DD/`（含 `charts/`）后必须 `git push`，并用 `open_git_pr` 开到 `master` 的 PR，再合并进 `master`（可本地 merge 后 `git push origin master`，或启用 PR auto-merge）。不要只停在临时 agent 分支。
 - 内容仅供研究，不构成投资建议。
