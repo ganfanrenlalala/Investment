@@ -1,0 +1,57 @@
+{
+  "date": "2026-09-07",
+  "indices": [
+    {"name": "上证", "value": 0.07},
+    {"name": "深成指", "value": 1.91},
+    {"name": "创业板", "value": 3.41},
+    {"name": "沪深300", "value": 0.59},
+    {"name": "科创50", "value": 2.42}
+  ],
+  "limits": {"up": 93, "down": 2},
+  "watch_groups": [
+    {
+      "title": "黄金：现货与个股同步回落",
+      "items": [
+        {"name": "Au99.99", "value": -1.70},
+        {"name": "黄金ETF", "value": -1.53},
+        {"name": "山东黄金", "value": -3.83},
+        {"name": "贵金属板块", "value": -2.77}
+      ]
+    },
+    {
+      "title": "半导体：资金回流、龙头跟涨",
+      "items": [
+        {"name": "半导体板块", "value": 2.54},
+        {"name": "中芯国际", "value": 2.46},
+        {"name": "寒武纪", "value": 1.90},
+        {"name": "源杰科技", "value": 16.10}
+      ]
+    },
+    {
+      "title": "外盘（美东09-04收盘；09-07 Labor Day休市）",
+      "items": [
+        {"name": "纳指", "value": -0.29},
+        {"name": "NVDA", "value": 0.84}
+      ]
+    },
+    {
+      "title": "医药：小幅分化、资金中性",
+      "items": [
+        {"name": "化学制药", "value": 0.38},
+        {"name": "生物制品", "value": 0.09},
+        {"name": "药明康德", "value": -0.38},
+        {"name": "恒瑞医药", "value": 0.52}
+      ]
+    }
+  ],
+  "fund_flow": [
+    {"name": "半导体", "value": 239.78},
+    {"name": "通信设备", "value": 175.55},
+    {"name": "元件", "value": 141.71},
+    {"name": "自动化设备", "value": 61.90},
+    {"name": "化学制药", "value": 1.03},
+    {"name": "生物制品", "value": -3.95},
+    {"name": "贵金属", "value": -14.33},
+    {"name": "证券", "value": -48.35}
+  ]
+}
