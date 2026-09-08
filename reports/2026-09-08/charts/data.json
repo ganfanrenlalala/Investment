@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-08",
+  "indices": [
+    {"name": "上证", "value": 0.20},
+    {"name": "深成指", "value": -0.52},
+    {"name": "创业板", "value": -1.15},
+    {"name": "沪深300", "value": -0.36},
+    {"name": "科创50", "value": -1.52}
+  ],
+  "limits": {"up": 73, "down": 0},
+  "watch_groups": [
+    {
+      "title": "黄金：现货微反弹、个股仍弱",
+      "items": [
+        {"name": "Au99.99", "value": 0.25},
+        {"name": "黄金ETF", "value": 0.25},
+        {"name": "山东黄金", "value": -1.21},
+        {"name": "国际金(TE)", "value": -0.07}
+      ]
+    },
+    {
+      "title": "半导体：修复日次日回吐",
+      "items": [
+        {"name": "半导体板块", "value": -1.28},
+        {"name": "中芯国际", "value": -2.09},
+        {"name": "寒武纪", "value": -3.06},
+        {"name": "北方华创", "value": -1.93}
+      ]
+    },
+    {
+      "title": "外盘（最近完整收盘=09-04）",
+      "items": [
+        {"name": "纳指", "value": -0.29},
+        {"name": "NVDA", "value": 0.84}
+      ]
+    },
+    {
+      "title": "医药：CXO/医疗服务偏强",
+      "items": [
+        {"name": "医疗服务", "value": 3.08},
+        {"name": "生物制品", "value": 1.93},
+        {"name": "化学制药", "value": 1.50},
+        {"name": "药明康德", "value": 2.02}
+      ]
+    }
+  ],
+  "fund_flow": [
+    {"name": "工业金属", "value": 46.63},
+    {"name": "农化制品", "value": 29.61},
+    {"name": "电力", "value": 22.74},
+    {"name": "半导体", "value": -58.25},
+    {"name": "化学制药", "value": -2.33},
+    {"name": "医疗服务", "value": 11.43},
+    {"name": "贵金属", "value": 10.44}
+  ]
+}
