@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-10",
+  "indices": [
+    {"name": "上证", "value": -0.43},
+    {"name": "深成指", "value": -0.77},
+    {"name": "创业板", "value": -0.49},
+    {"name": "沪深300", "value": -0.53},
+    {"name": "科创50", "value": -0.69}
+  ],
+  "limits": {"up": 35, "down": 11},
+  "watch_groups": [
+    {
+      "title": "黄金：现货微涨、个股回吐",
+      "items": [
+        {"name": "Au99.99", "value": 0.13},
+        {"name": "黄金ETF", "value": 0.46},
+        {"name": "山东黄金", "value": -1.82},
+        {"name": "伦敦金XAU", "value": 0.14}
+      ]
+    },
+    {
+      "title": "半导体：电子链偏弱（无THS摘要）",
+      "items": [
+        {"name": "电子器件", "value": -0.43},
+        {"name": "电子元器件", "value": -0.56},
+        {"name": "中芯国际", "value": -1.10},
+        {"name": "中际旭创", "value": -2.07}
+      ]
+    },
+    {
+      "title": "外盘（美东09-09收盘）",
+      "items": [
+        {"name": "纳指", "value": -0.64},
+        {"name": "NVDA", "value": -0.91}
+      ]
+    },
+    {
+      "title": "医药：板块与龙头同步走弱",
+      "items": [
+        {"name": "生物制药", "value": -1.63},
+        {"name": "医药生物", "value": -1.70},
+        {"name": "CXO概念", "value": -2.12},
+        {"name": "恒瑞医药", "value": -3.98}
+      ]
+    }
+  ]
+}
