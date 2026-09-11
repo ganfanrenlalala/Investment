@@ -1,0 +1,54 @@
+{
+  "date": "2026-09-11",
+  "indices": [
+    {"name": "上证", "value": -1.18},
+    {"name": "深成指", "value": -1.08},
+    {"name": "创业板", "value": -0.49},
+    {"name": "沪深300", "value": -0.84},
+    {"name": "科创50", "value": -1.01}
+  ],
+  "limits": {"up": 40, "down": 21},
+  "watch_groups": [
+    {
+      "title": "黄金：现货与个股同步走弱",
+      "items": [
+        {"name": "Au99.99", "value": -1.41},
+        {"name": "黄金ETF", "value": -1.54},
+        {"name": "山东黄金", "value": -2.58}
+      ]
+    },
+    {
+      "title": "半导体：板块大流出、龙头分化",
+      "items": [
+        {"name": "半导体", "value": -2.02},
+        {"name": "中芯国际", "value": -1.49},
+        {"name": "中际旭创", "value": 4.03},
+        {"name": "NVDA(09-10)", "value": -2.37}
+      ]
+    },
+    {
+      "title": "外盘：美东09-10收盘偏弱",
+      "items": [
+        {"name": "纳指", "value": -0.65},
+        {"name": "NVDA", "value": -2.37}
+      ]
+    },
+    {
+      "title": "医药：板块偏弱、恒瑞相对抗跌",
+      "items": [
+        {"name": "化学制药", "value": -2.37},
+        {"name": "生物制药", "value": -1.79},
+        {"name": "恒瑞医药", "value": -0.61},
+        {"name": "药明康德", "value": -2.11}
+      ]
+    }
+  ],
+  "fund_flow": [
+    {"name": "通信设备", "value": 39.65},
+    {"name": "元件", "value": 20.77},
+    {"name": "风电设备", "value": 5.50},
+    {"name": "化学制药", "value": -22.88},
+    {"name": "贵金属", "value": -22.17},
+    {"name": "半导体", "value": -90.11}
+  ]
+}
