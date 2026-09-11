@@ -44,6 +44,8 @@ python3 scripts/make_recap_charts.py reports/YYYY-MM-DD/charts/data.json
 
 不要手写 matplotlib，不要用 Mermaid `pie` / `xychart-beta` 当主图。缺哪块数据就省略对应图并注明原因，禁止用 0 凑数。
 
+写完当日报告后运行 `python scripts/preflight_review.py YYYY-MM-DD`。预检失败时先修复章节、来源、图片引用或图表数据，再进行 `git add` / `commit` / `push`。
+
 约束：
 
 - 这是研究摘要，不是代客理财；建议必须带风险提示。

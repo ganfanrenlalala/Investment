@@ -119,6 +119,14 @@ python3 scripts/make_recap_charts.py reports/YYYY-MM-DD/charts/data.json
 
 5. `charts/data.json` 和 PNG 必须随报告一起提交。
 
+完成当日文件后，在仓库根目录运行预检；预检失败时先修复报告或数据，再提交：
+
+```text
+python scripts/preflight_review.py YYYY-MM-DD
+```
+
+预检会检查报告章节、三个 skill 的来源状态、图表引用、`charts/data.json`，并在临时目录验证 PNG 是否可生成。若本地缺少图表依赖，应按环境安装说明处理，不要用占位图绕过检查。
+
 脚本已处理：涨红跌绿、横条图、柱旁数值、资金流入/流出同一坐标、中文字体（Windows YaHei / 云端 Noto 或文泉驿）。不要手写 matplotlib，不要另起一套图。
 
 ### 6.2 硬性规则

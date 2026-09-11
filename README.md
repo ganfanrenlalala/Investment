@@ -21,6 +21,12 @@
 4. 用 **firecrawl-cli** 检索黄金、半导体、纳指、医药的当日资讯
 5. 汇总投资建议，写入 `reports/YYYY-MM-DD/`（每天一个文件夹，主报告为 `复盘.md`）
 
+生成报告后可在仓库根目录运行预检，检查章节、来源标注、图表引用、`charts/data.json` 和临时 PNG 生成：
+
+```text
+python scripts/preflight_review.py YYYY-MM-DD
+```
+
 纳指和美股半导体在 15:30 通常尚未开盘，报告会使用最近可用数据并标明时点。内容仅供研究，不构成投资建议。
 
 ## Skills（已迁入本仓库）

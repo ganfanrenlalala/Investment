@@ -139,11 +139,11 @@ def _classify_intent(query: str) -> str:
     # 分时量能分析
     if any(k in query for k in ["量能", "放量", "缩量", "主力动向", "抢筹", "出货", "封单", "分时量能"]):
         return VOLUME_ANALYSIS
-    if any(k in query for k in ["k线", "K线", "日线", "周线", "月线"]) or "kline" in q:
-        return KLINE_ANALYSIS
     # 绘图功能：K线图、走势、行情图
     if any(k in query for k in ["走势图", "趋势图", "行情图", "K线图", "k线图", "绘制", "画图", "图"]):
         return KLINE_CHART
+    if any(k in query for k in ["k线", "K线", "日线", "周线", "月线"]) or "kline" in q:
+        return KLINE_ANALYSIS
     if any(k in query for k in ["怎么样", "分析", "看下", "评估", "综合"]):
         return STOCK_OVERVIEW
     if any(k in query for k in ["资金流", "主力资金", "北向资金", "南向资金", "东向资金", "行业资金", "板块资金"]):

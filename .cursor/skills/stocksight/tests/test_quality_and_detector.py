@@ -1,5 +1,6 @@
 ﻿# -*- coding: utf-8 -*-
 import unittest
+import math
 
 from core import detect_anomalies, normalize_quote_data
 
@@ -22,6 +23,33 @@ class QualityAndDetectorTests(unittest.TestCase):
         self.assertEqual(normalized[0].volume, 0)
         self.assertEqual(normalized[0].amount, 0.0)
         self.assertTrue(notes)
+
+    def test_normalize_quote_data_drops_invalid_current_price(self):
+        stock = sample_stock(current_price=0.0)
+
+        normalized, notes = normalize_quote_data([stock])
+
+        self.assertEqual(normalized, [])
+        self.assertIn("现价不可用", notes[0])
+
+    def test_normalize_quote_data_clears_nonfinite_and_extreme_fields(self):
+        stock = sample_stock(
+            volume_ratio=math.nan,
+            turnover_rate=95.7,
+            high=9.0,
+            low=10.0,
+            change_percent=35.0,
+        )
+
+        normalized, notes = normalize_quote_data([stock])
+
+        self.assertEqual(len(normalized), 1)
+        self.assertEqual(normalized[0].volume_ratio, 0.0)
+        self.assertEqual(normalized[0].turnover_rate, 0.0)
+        self.assertEqual(normalized[0].high, 0.0)
+        self.assertEqual(normalized[0].low, 0.0)
+        self.assertEqual(normalized[0].change_percent, 0.0)
+        self.assertTrue(any("极端" in note for note in notes))
 
     def test_detector_ignores_unavailable_turnover_rate(self):
         stock = sample_stock(volume_ratio=1.0, turnover_rate=0.0, change_percent=1.0)
